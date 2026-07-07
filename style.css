@@ -1,0 +1,143 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #555;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h3, header h4 {
+    margin: 5px 0;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: left;
+    margin-top: 20px;
+    font-size: 10px;
+}
+
+h5 {
+    margin: 10px 0 5px 0;
+    color: #777;
+    font-weight: bold;
+}
+
+.thick-line {
+    border: 0;
+    border-top: 2px solid #555;
+    margin: 15px 0;
+}
+
+.thin-line {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 0.85em;
+    text-align: justify;
+}
+
+/* Styling Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    font-size: 0.85em;
+}
+
+table th {
+    background-color: #fff;
+    color: #888;
+    font-weight: normal;
+}
+
+/* Kolom Rating & Checkbox di tengah */
+table td:nth-child(2), 
+table td:nth-child(3), 
+table td:nth-child(4),
+table th:nth-child(2),
+table th:nth-child(3),
+table th:nth-child(4) {
+    text-align: center;
+    width: 60px;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+/* Tambahkan ini di style.css Anda */
+
+/* Membuat input tampak bersih seperti teks biasa saat dicetak */
+input[type="text"], 
+input[type="number"], 
+input[type="date"], 
+input[type="time"] {
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-family: inherit;
+    color: #333;
+    width: 60%; /* Sesuaikan agar tidak terlalu lebar */
+}
+
+.narrative-box {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 0.85em;
+    line-height: 1.5;
+    resize: none;
+    box-sizing: border-box;
+    white-space: pre-wrap; /* Memastikan di layar juga pindah baris */
+    word-wrap: break-word;
+}
+
+/* Opsional: Efek saat kotak diklik */
+.narrative-box:focus {
+    outline: none;
+    border-color: #888;
+}
+
+/* Sembunyikan tombol saat akan di-print (opsional) */
+@media print {
+    #download-btn {
+        display: none;
+    }
+}
+.table_section {
+    margin-top: 20px;
+    text-align: center;
+}
+.logo {
+    width: 150px; /* Sesuaikan ukuran logo sesuai kebutuhan */
+    height: auto;
+    margin-bottom: 5px;
+}

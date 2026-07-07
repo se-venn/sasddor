@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Santos County Sheriff's Department Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="image.png" alt="Los Santos County Sheriff's Department Logo" class="logo">
+        <h3>Los Santos County Sheriff's Department</h3>
+        <h4>Field Training Program</h4>
+        
+        <div class="info-grid">
+            <div><strong>FTP FULL NAME: </strong><input type="text"></div>
+
+            <div><strong>START FTP: </strong><input type="time"></div>
+            <div><strong>PHASE: </strong><input type="text"></div>
+
+            <div><strong>FTO FULL NAME: </strong><input type="text"></div>
+            <div><strong>END FTP: </strong><input type="time"></div>
+            <div><strong>DATE: </strong><input type="date"></div>
+        </div>
+    </header>
+
+    <hr class="thick-line">
+
+    <section class="instructions">
+        <h5>RATING INSTRUCTION</h5>
+        <hr class="thin-line">
+        <p>Rate observed behavior on the scale one to seven. You must comment on the most and least acceptable performance of the day. Specific comments are required for all ratings below "3", above "6", and "N.R.T." (Not Responding to Training). Check the "N.O." (Not Observed) box if a category is not observed. Check the "N.R.T." box if the Trainee fails to respond to training.</p>
+    </section>
+
+    <hr class="thick-line">
+
+    <section class="tasks">
+        <h5>TASK CHECKLIST</h5>
+        <hr class="thin-line">
+        <table>
+            <thead>
+                <tr>
+                    <th>TASK</th>
+                    <th>RATING</th>
+                    <th>N.O.</th>
+                    <th>N.R.T.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Grooming</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Driving Skills</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Radio Usage</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Verbal Control</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Physical Contact</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Investigation Skills</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Problem Solving/Decision Making</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Acceptance of Feedback</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Attitude Toward Police Work</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+                <tr><td>Relationship with Public</td><td><input type="number" min="1" max="7"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr class="thick-line">
+
+    <section class="narrative">
+        <h5>NARRATIVE</h5>
+        <hr class="thin-line">
+        <textarea class="narrative-box" placeholder="Enter narrative comments here..."></textarea>
+    </section>
+    <section class="table-section">
+        <table>
+            <tr>
+                <th>
+                    FIELD TRAINING OFFICER
+                </th>
+                <th>
+                    Date
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" placeholder="Enter name here...">
+                </td>
+                <td>
+                    <input type="date">
+                </td>
+        </table>
+    </section>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<div style="text-align: center; margin-top: 20px;">
+    <button id="download-btn" style="padding: 10px 20px; cursor: pointer; background: #555; color: white; border: none; border-radius: 5px;">
+        Extract to JPG
+    </button>
+</div>
+
+<script>
+document.getElementById('download-btn').addEventListener('click', function() {
+    const target = document.querySelector(".container");
+    const inputs = target.querySelectorAll("input[type='text'], input[type='time'], input[type='date'], input[type='number']");
+    const textareas = target.querySelectorAll("textarea");
+    const tempElements = [];
+    const btn = this;
+
+    // 1. Sembunyikan tombol agar tidak ikut terfoto
+    btn.style.visibility = "hidden";
+
+    // 2. Fungsi untuk menukar input/textarea menjadi Span agar render sempurna
+    const replaceWithSpan = (el) => {
+        const span = document.createElement("span");
+        span.innerText = el.value || " "; 
+        
+        span.style.display = "inline-block";
+        span.style.fontFamily = "inherit";
+        span.style.fontSize = window.getComputedStyle(el).fontSize;
+        span.style.color = "#333";
+        span.style.borderBottom = "1px solid #eee";
+        span.style.minWidth = el.offsetWidth + "px";
+
+        el.style.display = "none";
+        el.parentNode.insertBefore(span, el);
+        tempElements.push({ span, el });
+    };
+
+    inputs.forEach(replaceWithSpan);
+    textareas.forEach(replaceWithSpan);
+
+    // 3. Proses ekspor dengan penanganan error
+    html2canvas(target, {
+        scale: 2, // Diubah ke 2 dulu agar tidak terlalu berat, bisa dinaikkan ke 3 jika aman
+        backgroundColor: "#ffffff",
+        logging: true, // Aktifkan logging untuk melihat error di inspect element (F12)
+        useCORS: true,
+        allowTaint: false // Ubah ke false jika menggunakan useCORS agar tidak bentrok
+    }).then(canvas => {
+        const image = canvas.toDataURL("image/jpeg", 0.95);
+        const link = document.createElement('a');
+        link.download = `LSPD-Report-${Date.now()}.jpg`;
+        link.href = image;
+        link.click();
+    }).catch(err => {
+        console.error("Gagal mengambil gambar halaman:", err);
+        alert("Gagal mengekstrak gambar. Pastikan Anda menjalankan file ini menggunakan local server (seperti Live Server di VS Code) jika terdapat aset gambar luar.");
+    }).finally(() => {
+        // 4. Kembalikan semua ke bentuk semula (selalu dieksekusi baik sukses maupun gagal)
+        tempElements.forEach(item => {
+            item.span.remove();
+            item.el.style.display = "";
+        });
+        btn.style.visibility = "visible";
+    });
+});
+</script>
+</body>
+</html>
